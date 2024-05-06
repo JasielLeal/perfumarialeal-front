@@ -4,7 +4,7 @@ import { NavLink } from '@/components/NavLink'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button';
 import { useQuery } from '@tanstack/react-query';
-import axios, { AxiosError, isAxiosError } from 'axios';
+import axios, { AxiosError} from 'axios';
 import { useEffect, useState } from 'react';
 import { FaBox, FaHome, FaUser } from 'react-icons/fa'
 import { SlLogout } from "react-icons/sl";

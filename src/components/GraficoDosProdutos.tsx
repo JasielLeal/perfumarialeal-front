@@ -80,7 +80,7 @@ export function GraficoDosProdutos() {
                                         }}
                                     >
                                         {pedidos.map((entry: any, index: any) => (
-                                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} additive={entry}/>
                                         ))}
                                     </Pie>
                                 </PieChart>
