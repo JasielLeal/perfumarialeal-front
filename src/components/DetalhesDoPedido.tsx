@@ -86,15 +86,15 @@ export function DetalhesDoPedido({ pedido }: TakeDetalhesPedidoTableRowProps) {
         await CreateProductFn(data)
     }
 
-    const {mutateAsync: DeletePedidoFn, isPending: isProcess} = useMutation({
+    const { mutateAsync: DeletePedidoFn, isPending: isProcess } = useMutation({
         mutationFn: DeletePedido,
-        onSuccess: () =>{
+        onSuccess: () => {
             toast.success("Sucesso");
             queryClient.invalidateQueries(['getAllPedidos'] as InvalidateQueryFilters)
         },
         onError: () => {
             toast.error("Erro ao deletar o produto");
-        }, 
+        },
     })
 
 
@@ -126,7 +126,7 @@ export function DetalhesDoPedido({ pedido }: TakeDetalhesPedidoTableRowProps) {
                                 <div className="flex py-10 items-center gap-5">
                                     <Input placeholder="Quatidade" {...register('amount')} />
                                     <Input placeholder="Nome" {...register('name')} />
-                                    <Input placeholder="Valor total" {...register('value')} onChange={handleValueChange}/>
+                                    <Input placeholder="Valor total" {...register('value')} onChange={handleValueChange} />
                                     <Button className="my-5" disabled={isPending} >
                                         Adicionar produto
                                     </Button>
@@ -152,9 +152,10 @@ export function DetalhesDoPedido({ pedido }: TakeDetalhesPedidoTableRowProps) {
                 </Accordion>
             </div>
             <div className="col-span-1">
-                <Button variant={'destructive'} disabled={isProcess} onClick={async()=>{
-                        await DeletePedidoFn(pedido?.id)
-                    }}>
+                <Button variant={'destructive'} disabled={isProcess} onClick={async () => {
+                    await DeletePedidoFn(pedido?.id)
+                }
+                }>
                     Excluir pedido
                 </Button>
             </div>

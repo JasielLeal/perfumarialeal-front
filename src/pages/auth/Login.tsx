@@ -24,7 +24,7 @@ export function Login() {
         mutationFn: LoginUser,
         onSuccess: (response) => {
             toast.success("Sucesso");
-            cookie.set('token', response.data.token)
+            cookie.set('token', response.data.user.token)
             navigate('/home', { replace: true })
         },
         onError: () => {

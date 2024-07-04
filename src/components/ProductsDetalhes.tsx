@@ -14,32 +14,29 @@ export interface ProductRegisterTableRow {
     }
 }
 
-
-
 export function ProductsDetalhes({ produto }: ProductRegisterTableRow) {
-    
-    const formatarParaReais = (valor:number) => {
+
+    const formatarParaReais = (valor: number) => {
         if (typeof valor === 'number' && !isNaN(valor)) {
             return (Number(valor) / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
         }
 
         return '';
     };
-    
+
     const queryClient = useQueryClient()
 
-    const {mutateAsync: DeleteProductFn, isPending} = useMutation({
+    const { mutateAsync: DeleteProductFn, isPending } = useMutation({
         mutationFn: DeleteProduct,
-        onSuccess: () =>{
+        onSuccess: () => {
             toast.success("Sucesso");
             queryClient.invalidateQueries(['getAllPedidos'] as InvalidateQueryFilters)
         },
         onError: () => {
             toast.error("Erro ao deletar o produto");
-        }, 
+        },
     })
-    
-    
+
     return (
         <>
             <TableRow>
@@ -48,7 +45,7 @@ export function ProductsDetalhes({ produto }: ProductRegisterTableRow) {
                 <TableCell>{formatarParaReais(Number(produto?.value))}</TableCell>
                 <TableCell>{formatarParaReais(Number(produto?.valueUnit))}</TableCell>
                 <TableCell className="text-right">
-                    <Button variant={'ghost'} disabled={isPending} className="text-red-500 hover:text-red-600" onClick={async()=>{
+                    <Button variant={'ghost'} disabled={isPending} className="text-red-500 hover:text-red-600" onClick={async () => {
                         await DeleteProductFn(produto?.id)
                     }}>Excluir</Button>
                 </TableCell>
